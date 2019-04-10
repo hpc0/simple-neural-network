@@ -10,7 +10,7 @@ The module can be installed via the [pip](https://pip.pypa.io/en/stable/) packag
 $ pip install snn
 ```
 
-**Usage**
+## Usage
 
 ```python
 from snn import SNN

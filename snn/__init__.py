@@ -46,7 +46,7 @@ class SNN:
         # train(self, prev_a, target?, loss?, next_w?, next_dL_dz?)
         for i in range(len(self.layers) - 1, -1, -1):
             if i == 0:
-                prev_z = input
+                prev_z = input_list
             else:
                 prev_z = self.layers[i - 1].z
 
