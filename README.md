@@ -6,6 +6,7 @@ Simple neural network for solving problems of selection.
 
 The module can be installed via the [pip](https://pip.pypa.io/en/stable/) package manager.
 
+
 ```bash
 $ pip install snn
 ```
