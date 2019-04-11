@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='snn',
-      version='0.2',
+      version='0.3',
       description='Simple neural network for solving problems of selection',
       url='https://github.com/hpc0/simple-neural-network',
       author='Herman Paul Chávez',
