@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='snn',
-      version='0.3',
+      version='0.4',
       description='Simple neural network for solving problems of classification and regression',
       url='https://github.com/hpc0/simple-neural-network',
       author='Herman Paul Chávez',

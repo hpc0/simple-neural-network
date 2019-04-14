@@ -19,7 +19,8 @@ def identity(x):
 class Layer:
     def train(self, prev_z, task, target=np.array([]), loss=None, next_w=np.array([]), next_dL_da=np.array([]), lr=0.2):
         if next_dL_da.size == 0:  # last layer
-            dL_dz = (self.z - target) / loss
+            # dL_dz = (self.z - target) / loss  # for 'distance based' (pythagoras) loss
+            dL_dz = self.z - target
             if task == REGRESSION:
                 dz_da = 1
             else:  # task == CLASSIFICATION
@@ -46,14 +47,15 @@ class Layer:
 
     def __init__(self, n_neurons, n_input) -> None:
         super().__init__()
-        self.w = np.random.rand(n_neurons, n_input)
-        self.b = np.random.rand(n_neurons)
+        self.w = np.random.rand(n_neurons, n_input) * 2 - 1
+        self.b = np.random.rand(n_neurons) * 2 - 1
 
 
 class SNN:
     def train(self, input_list, target, lr=0.2):
         self.eval(input_list)
-        self.loss = np.sqrt(np.sum((self.layers[-1].z - target) ** 2))
+        # self.loss = np.sqrt(np.sum((self.layers[-1].z - target) ** 2))
+        self.loss = np.sum((self.layers[-1].z - target) ** 2)
 
         # train each layer
         # train(self, prev_a, target?, loss?, next_w?, next_dL_dz?)
@@ -90,6 +92,12 @@ class SNN:
         super().__init__()
         self.task = task
         self.layers = []
+        self.dL_da = []
+        self.dL_dw = []
+        self.dL_db = []
+        self.delta_w = []
+        self.delta_b = []
+
         for i, n in enumerate(topology):
             if i == 0:
                 self.layers.append(Layer(n, n_input))
